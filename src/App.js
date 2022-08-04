@@ -12,7 +12,7 @@ function App() {
     <div className="App">
         <Routes>
           <Route exact path="/" element={<ListGame YangDiBaca="games"/>} />
-          <Route path="/teknologi" element={<ListGame YangDiBaca="tech"/>} />
+          <Route path="teknologi" element={<ListGame YangDiBaca="tech"/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/detail/:tahun/:bulan/:tanggal/:judul" element={<Detailku />} />
           <Route path="/register" element={<RegPage />} />
