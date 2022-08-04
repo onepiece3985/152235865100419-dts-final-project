@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React, { useEffect, useState }  from "react";
 import { auth, outApps } from "../authentication/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,14 @@ const Kepala=(props) =>{
 		await outApps();
 		navigate("/login");
 	};
+  const [KataKunci, setKataKunci]=useState({kunci:""});
+  const kunciDiganti=(event)=>{
+    setKataKunci({...KataKunci,kunci:event.target.value})
+  }
+  const cariKunci=()=>{
+    navigate(`/search?search=${KataKunci.kunci}`);
+    window.location.reload();
+  }
 	useEffect(
         () =>{
             if(isLoading){
@@ -51,11 +59,17 @@ const Kepala=(props) =>{
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Halo, {user?user.email:"Tamu"}
           </Typography>
-          <TextField id="filled-basic" label="Kata kunci" variant="filled" color="primary"/>
+          <TextField 
+            id="filled-basic" 
+            label="Kata kunci" 
+            variant="filled" 
+            color="primary"
+            value={KataKunci.kunci}  
+            onChange={kunciDiganti}
+          />
           <Button
             color="inherit"
-            component="a"
-            href="./search?"
+            onClick={cariKunci}
           > Cari
           </Button>
           {user?(
