@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 const Kepala=(props) =>{
   const navigate=useNavigate();
 	const [user, isLoading]=useAuthState(auth);
@@ -21,9 +22,9 @@ const Kepala=(props) =>{
             if(isLoading){
                 return;
             }
-            if(user){
-                navigate("/");
-            }
+            // if(user){
+            //     navigate("/");
+            // }
         },
         [user, isLoading, navigate]
     )
@@ -40,13 +41,23 @@ const Kepala=(props) =>{
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h6" component="a" sx={{ flexGrow: 1 }} href="/">
+            Game
+          </Typography>
+          <Typography variant="h6" component="a" sx={{ flexGrow: 1 }} href="/teknologi">
+            Teknologi
           </Typography>
           
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Halo, {user?user.email:"Tamu"}
           </Typography>
+          <TextField id="filled-basic" label="Kata kunci" variant="filled" color="primary"/>
+          <Button
+            color="inherit"
+            component="a"
+            href="./search?"
+          > Cari
+          </Button>
           {user?(
             <Button 
               color="inherit"

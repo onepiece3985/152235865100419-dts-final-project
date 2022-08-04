@@ -6,13 +6,13 @@ import DetGame from "../components/Detil";
 
 function Detailku(props) {
 	let params = useParams();
-    const [gamemu, detGames] = useState([]);
+    const [gamemu, detGamemu] = useState([]);
     useEffect(
         () => {
             const fetchDataGame = async () => {
                 try{
-                    const responseGame=await axios.get("https://the-lazy-media-api.vercel.app/api/detail/"+params?.linkId);
-                    detGames(responseGame.data.results);
+                    const responseGame=await axios.get(`https://the-lazy-media-api.vercel.app/api/detail/${params?.tahun}/${params?.bulan}/${params?.tanggal}/${params?.judul}`);
+                    detGamemu(responseGame.data.results);
                 } catch (err) {
                     console.warn(err);
                 }
@@ -23,7 +23,7 @@ function Detailku(props) {
     );
 	return (
         <Box className="boxy">
-            <Typography variant="h5">Detail Game</Typography>
+            <Typography variant="h5">Detail Game </Typography>
             <DetGame game={gamemu} />;
         </Box>
 	);

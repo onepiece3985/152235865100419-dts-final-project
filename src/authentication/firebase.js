@@ -20,12 +20,11 @@ const auth = getAuth(app);
 const regEmailPass = async (email, password) =>{
     try{
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        // console.log("User ",response.user," berhasil daftar dan login ");
-        alert("User ",response.user," berhasil daftar dan login ");
+        console.warn("User ",response.user," berhasil daftar dan warnin ");
     }catch(err){
-        console.log(err);
-        console.log("Kode error", err.code);
-        console.log("Pesan error", err.message);
+        console.warn(err);
+        console.warn("Kode error", err.code);
+        console.warn("Pesan error", err.message);
         
     }
 };
@@ -33,20 +32,20 @@ const regEmailPass = async (email, password) =>{
 const logEmailPass = async (email,password) => {
     try{
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log("Anda login sebagai ", userCredential.user);
+        console.warn("Anda warnin sebagai ", userCredential.user);
     }catch(err){
-        console.log(err);
-        console.log("Kode error", err.code);
-        console.log("Pesan error", err.message);
+        console.warn(err);
+        console.warn("Kode error", err.code);
+        console.warn("Pesan error", err.message);
     }
 };
 
 const resPass = async (email) => {
     try{
         await sendPasswordResetEmail(auth, email);
-        console.log("Password baru sudah dikirim");
+        console.warn("Password baru sudah dikirim");
     }catch(err){
-        console.log(err);
+        console.warn(err);
     }
 };
 
@@ -54,7 +53,7 @@ const outApps = async () => {
     try{
         await signOut(auth);
     }catch (err){
-        console.log(err);
+        console.warn(err);
     }
 };
 
